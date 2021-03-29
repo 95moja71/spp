@@ -31,7 +31,7 @@ class ActiveCode extends Model
             // store the code
             $user->activeCode()->create([
                 'code' => $code,
-                'expired_at' => now()->addMinutes(10)
+                'expired_at' => now()->addMinutes(11)
             ]);
         }
 

@@ -20,6 +20,9 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 Route::get('/auth/google' ,'Auth\GoogleAuthController@redirect')->name('auth.google');
 Route::get('/auth/google/callback' ,'Auth\GoogleAuthController@callback');
+Route::get('/auth/token' ,'Auth\AuthTokenController@getToken')->name('2fa.token');
+Route::post('/auth/token' ,'Auth\AuthTokenController@postToken');
+
 
 
 

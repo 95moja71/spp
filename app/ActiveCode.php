@@ -19,6 +19,12 @@ class ActiveCode extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function scopeVerifyCode($query , $code,  $user)
+    {
+
+        return !! $user->activeCode()->whereCode($code)->where('expired_at' , '>' , now())->first();
+    }
+
     public function scopeGenerateCode($query , $user)
     {
         if($code = $this->getAliveCodeForUser($user)) {
@@ -31,7 +37,7 @@ class ActiveCode extends Model
             // store the code
             $user->activeCode()->create([
                 'code' => $code,
-                'expired_at' => now()->addMinutes(11)
+                'expired_at' => now()->addMinutes(10)
             ]);
         }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ActiveCode;
+use App\Notifications\ActiveCodeNotification;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -21,15 +22,16 @@ class ProfileController extends Controller
     {
         $data = $request->validate([
             'type' => 'required|in:sms,off',
-            'phone' => 'required_unless:type,off'
+            'phone' => "required_unless:type,off|unique:users,phone_number,{$request->user()->id}"
         ]);
 
-        if($data['type'] === 'sms') {
-            if($request->user()->phone_number !== $data['phone']) {
+        if ($data['type'] === 'sms') {
+            if ($request->user()->phone_number !== $data['phone']) {
                 // create a new code
                 $code = ActiveCode::generateCode($request->user());
+                $request->session()->flash('phone', $data['phone']);
                 // send the code to user phone number
-                // TODO Send Sms
+                $request->user()->notify(new ActiveCodeNotification($code , $data['phone']));
 
                 return redirect(route('profile.2fa.phone'));
             } else {
@@ -39,7 +41,7 @@ class ProfileController extends Controller
             }
         }
 
-        if($data['type'] === 'off') {
+        if ($data['type'] === 'off') {
             $request->user()->update([
                 'two_factor_type' => 'off'
             ]);
@@ -49,18 +51,43 @@ class ProfileController extends Controller
     }
 
 
-    public function getPhoneVerify()
+    public function getPhoneVerify(Request $request)
     {
+        if (!$request->session()->has('phone')) {
+            return redirect(route('profile.2fa.manage'));
+        }
+
+        $request->session()->reflash();
+
         return view('profile.phone-verify');
     }
 
     public function postPhoneVerify(Request $request)
     {
         $request->validate([
-           'token' => 'required'
+            'token' => 'required'
         ]);
 
+        if (!$request->session()->has('phone')) {
+            return redirect(route('profile.2fa.manage'));
+        }
 
-        return $request->token;
+
+        $status = ActiveCode::verifyCode($request->token, $request->user());
+
+
+        if ($status) {
+            $request->user()->activeCode()->delete();
+            $request->user()->update([
+                'phone_number' => $request->session()->get('phone'),
+                'two_factor_type' => 'sms'
+            ]);
+
+            alert()->success('شماره تلفن و احرازهویت دو مرحلهای شما تایید شد.', 'عملیات موفقیت آمیز بود');
+        } else {
+            alert()->error('شماره تلفن و احرازهویت دو مرحلهای شما تایید نشد.', 'عملیات ناموفق بود');
+        }
+
+        return redirect(route('profile.2fa.manage'));
     }
 }

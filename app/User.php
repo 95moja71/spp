@@ -16,7 +16,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','two_factor_type' , 'phone'
+        'name', 'email', 'password','two_factor_type' , 'phone_number'
     ];
 
     /**
@@ -45,5 +45,9 @@ class User extends Authenticatable implements MustVerifyEmail
     public function hasTwoFactor($key)
     {
         return $this->two_factor_type == $key;
+    }
+    public function hasTwoFactorAuthenticatedEnabled()
+    {
+        return $this->two_factor_type !== 'off';
     }
 }

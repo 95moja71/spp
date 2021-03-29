@@ -46,6 +46,14 @@ class LoginController extends Controller
         return $this->loggendin($request , $user);
     }
 
+    /**
+     * Validate the user login request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
     protected function validateLogin(Request $request)
     {
         $request->validate([
@@ -56,6 +64,4 @@ class LoginController extends Controller
             'g-recaptcha-response.required' => 'لطفا روی من ربات نیستم کلیک کنید'
         ]);
     }
-
-
 }

@@ -14,6 +14,8 @@
 use App\ActiveCode;
 
 Route::get('/', function () {
+    $user = \App\User::find(1);
+    $user->notify(new \App\Notifications\LoginToWebsiteNotification());
     return view('welcome');
 });
 
@@ -32,12 +34,11 @@ Route::get('/secret' , function() {
 })->middleware(['auth' , 'password.confirm']);
 
 
-Route::middleware('auth')->group(function() {
-    Route::get('profile' , 'ProfileController@index')->name('profile');
-    Route::get('profile/twofactor' , 'ProfileController@manageTwoFactor')->name('profile.2fa.manage');
-    Route::post('profile/twofactor' , 'ProfileController@postManageTwoFactor');
+Route::prefix('profile')->namespace('Profile')->middleware('auth')->group(function() {
+    Route::get('/' , 'IndexController@index')->name('profile');
+    Route::get('twofactor' , 'TwoFactorAuthController@manageTwoFactor')->name('profile.2fa.manage');
+    Route::post('twofactor' , 'TwoFactorAuthController@postManageTwoFactor');
 
-    Route::get('profile/twofacto/phone' , 'ProfileController@getPhoneVerify')->name('profile.2fa.phone');
-    Route::post('profile/twofacto/phone' , 'ProfileController@postPhoneVerify');
+    Route::get('twofacto/phone' , 'TokenAuthController@getPhoneVerify')->name('profile.2fa.phone');
+    Route::post('twofacto/phone' , 'TokenAuthController@postPhoneVerify');
 });
-

@@ -35,7 +35,6 @@ class GoogleAuthController extends Controller
             return $this->loggendin($request , $user) ?: redirect('/');
         } catch (\Exception $e) {
             //TODO Log Error Message
-
             alert()->error('ورود با گوگل موفق نبود' , 'شما ارور دارید')->persistent('بسیار خوب');
             return redirect('/login');
         }

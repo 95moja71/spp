@@ -37,4 +37,8 @@ return [
         'redirect' => env('GOOGLE_REDIRECT'),
     ],
 
+    'ghasedak' => [
+        'key' => env('GHASEDAK_API_KEY')
+    ]
+
 ];

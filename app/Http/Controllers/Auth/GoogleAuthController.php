@@ -27,7 +27,12 @@ class GoogleAuthController extends Controller
                     'name' => $googleUser->name,
                     'email' => $googleUser->email,
                     'password' => bcrypt(\Str::random(16)),
+                    'two_factor_type' => 'off'
                 ]);
+            }
+
+            if( ! $user->hasVerifiedEmail()) {
+                $user->markEmailAsVerified();
             }
 
             auth()->loginUsingId($user->id);

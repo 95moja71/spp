@@ -39,7 +39,7 @@
                         <img src="img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 ml-3 img-circle">
                         <div class="media-body">
                             <h3 class="dropdown-item-title">
-                                حسام موسوی
+                                محمد جواد عباس زاده
                                 <span class="float-left text-sm text-danger"><i class="fa fa-star"></i></span>
                             </h3>
                             <p class="text-sm">با من تماس بگیر لطفا...</p>

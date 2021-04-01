@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="/plugins/iCheck/flat/blue.css">
     <!-- Morris chart -->
     <link rel="stylesheet" href="/plugins/morris/morris.css">
+
+    <link rel="stylesheet" href="/plugins/select2/select2.css">
     <!-- jvectormap -->
     <link rel="stylesheet" href="/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
     <!-- Date Picker -->
@@ -44,7 +46,7 @@
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
-        <strong>CopyLeft &copy; 2018 <a href="http://github.com/hesammousavi/">حسام موسوی</a>.</strong>
+        <strong>CopyLeft &copy; 2018 <a href="http://github.com/hesammousavi/">محمد جواد عباس زاده</a>.</strong>
     </footer>
 
     <!-- Control Sidebar -->
@@ -86,8 +88,12 @@
 <script src="/plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="/plugins/fastclick/fastclick.js"></script>
+
+<script src="/plugins/select2/select2.full.js"></script>
+
 <!-- AdminLTE App -->
 <script src="{{ asset('js/admin.js') }}"></script>
+@yield('script')
 @include('sweet::alert')
 </body>
 </html>

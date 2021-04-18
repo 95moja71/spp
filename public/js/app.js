@@ -37369,9 +37369,9 @@ __webpack_require__(/*! sweetalert */ "./node_modules/sweetalert/dist/sweetalert
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Roocket\Desktop\laravepro\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\Roocket\Desktop\laravepro\resources\sass\admin.scss */"./resources/sass/admin.scss");
-module.exports = __webpack_require__(/*! C:\Users\Roocket\Desktop\laravepro\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\web\Desktop\laravepro\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\web\Desktop\laravepro\resources\sass\admin.scss */"./resources/sass/admin.scss");
+module.exports = __webpack_require__(/*! C:\Users\web\Desktop\laravepro\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

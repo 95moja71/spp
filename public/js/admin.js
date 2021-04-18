@@ -1853,7 +1853,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Roocket\Desktop\laravepro\resources\js\admin.js */"./resources/js/admin.js");
+module.exports = __webpack_require__(/*! C:\Users\web\Desktop\laravepro\resources\js\admin.js */"./resources/js/admin.js");
 
 
 /***/ })

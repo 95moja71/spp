@@ -4,5 +4,5 @@
     وبسایت
 @endcomponent
 
-<p>وبسایت  </p>
+<p>وبسایت آموزشی</p>
 @endcomponent

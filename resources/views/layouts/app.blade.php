@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    {!! SEO::generate(true) !!}
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -35,7 +35,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav mr-auto">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -70,7 +70,7 @@
                 </div>
             </div>
         </nav>
-
+        @include('layouts.list-categories' , ['categories' => \App\Category::where('parent' , 0)->get()])
         <main class="py-4">
             @yield('content')
         </main>

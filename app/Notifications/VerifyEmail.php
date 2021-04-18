@@ -44,7 +44,7 @@ class VerifyEmail extends Notification
         }
 
         return (new MailMessage)
-            ->subject(' : تایید ایمیل')
+            ->subject('راکت : تایید ایمیل')
             ->line('لطفا روی دکمه زیر که برای تایید ایمیل شماست کلیک کنید')
             ->action(Lang::get('Verify Email Address'), $verificationUrl)
             ->line(Lang::get('If you did not create an account, no further action is required.'));

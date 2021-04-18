@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Services\FooService;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,9 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-//        $this->app->singleton('fooService' , function () {
-//            return new FooService('hesam');
-//        });
+
     }
 
     /**
@@ -26,6 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+
     }
 }

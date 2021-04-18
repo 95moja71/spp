@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Order;
 use App\Permission;
+use App\Policies\OrderPolicy;
 use App\Policies\UserPolicy;
 use App\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -18,6 +20,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         // 'App\Model' => 'App\Policies\ModelPolicy',
 //        User::class => UserPolicy::class
+        Order::class => OrderPolicy::class
     ];
 
     /**
@@ -29,12 +32,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::before(function ($user) {
-            if ($user->isSuperUser()) return true;
+        Gate::before(function($user) {
+           if($user->isSuperUser()) return true;
         });
 
         foreach (Permission::all() as $permission) {
-            Gate::define($permission->name, function ($user) use ($permission) {
+            Gate::define($permission->name , function($user) use ($permission){
                 return $user->hasPermission($permission);
             });
         }

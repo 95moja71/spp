@@ -57,7 +57,7 @@ class ResetPassword extends Notification
         }
 
         return (new MailMessage)
-            ->subject('پسورد ریست ')
+            ->subject('پسورد ریست')
             ->line('این ایمیل با توجه به درخواست پسورد ریست برای شما ارسال شده است')
             ->action(Lang::get('ریست پسورد'), url(config('app.url').route('password.reset', ['token' => $this->token, 'email' => $notifiable->getEmailForPasswordReset()], false)))
             ->line(Lang::get('این لینک تا 60 دقیقه دیگر اعتبار دارد', ['count' => config('auth.passwords.'.config('auth.defaults.passwords').'.expire')]))

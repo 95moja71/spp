@@ -78,7 +78,7 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                    {{ $users->render() }}
+                    {{ $users->appends([ 'search' => request('search') ])->render() }}
                 </div>
             </div>
             <!-- /.card -->

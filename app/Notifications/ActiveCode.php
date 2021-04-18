@@ -41,7 +41,7 @@ class ActiveCode extends Notification
     public function toGhasedakSms($notifiable)
     {
         return [
-            'text' => "کد احرازهویت {$this->code} \n وبسایت ",
+            'text' => "کد احرازهویت {$this->code} \n وبسایت",
             'number' => $this->phoneNumber
         ];
     }

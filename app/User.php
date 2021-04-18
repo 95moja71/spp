@@ -114,4 +114,19 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->permissions->contains('name' , $permission->name) || $this->hasRole($permission->roles);
     }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }
